@@ -27,7 +27,7 @@ namespace Calculator
 			fillHelpDictionary();
 		}
 
-		public void fillHelpDictionary()
+		private void fillHelpDictionary()
 		{
 			helpDictionary.Add("√", HelpContent.Root);
 			helpDictionary.Add("^", HelpContent.Exponentation);
@@ -45,6 +45,7 @@ namespace Calculator
 
 		private void closeButton_Click(object sender, RoutedEventArgs e)
 		{
+			helpWindow.MinHeight = 0;
 			DoubleAnimation closingAnimation = new DoubleAnimation()
 			{
 				From = helpWindow.ActualHeight,
@@ -75,6 +76,11 @@ namespace Calculator
 			caseTwoLabel.Content = ActualHelpContent.Case[1];
 			caseThreeLabel.Content = ActualHelpContent.Case[2];
 			caseFourLabel.Content = ActualHelpContent.Case[3];
+		}
+
+		private void DoubleAnimation_Completed(object sender, EventArgs e)
+		{
+			helpWindow.MinHeight = 500;
 		}
 	}
 }

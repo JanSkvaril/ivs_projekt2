@@ -68,7 +68,7 @@
 		<Button x:Name="minusButton" Content="-" Grid.Column="4" Grid.Row="5" Margin="7,5" Click="numberSign_Click"/>
 		<Button x:Name="factorialButton" Content="!" Grid.Column="0" Grid.Row="4" Margin="7,5" Click="numberSign_Click"/>
 		<Button x:Name="negationButton" Content="+/-" Grid.Column="1" Grid.Row="4" Margin="7,5" Click="negationButton_Click"/>
-		<Button x:Name="sqrtButton" Content="√" Grid.Column="2" Grid.Row="4" Margin="7,5" Click="sqrtButton_Click"/>
+		<Button x:Name="sqrtButton" Content="√" Grid.Column="2" Grid.Row="4" Margin="7,5" Click="numberSign_Click"/>
 		<Button x:Name="powerButton" Content="^" Grid.Column="3" Grid.Row="4" Margin="7,5" Click="numberSign_Click"/>
 		<Button x:Name="deleteButton" Grid.Column="0" Grid.Row="3" Margin="7,5" FontSize="13" Style="{StaticResource BetterButton}" Click="deleteButton_Click">
 			<Viewbox>

@@ -22,6 +22,8 @@ namespace Calculator
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private bool solved = false;
+		private bool pressedEnter = false;
 		private bool darkMode = true;
 		public bool DarkMode
 		{
@@ -74,19 +76,34 @@ namespace Calculator
 
 		private void numberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			if (solved && !pressedEnter)
+			{
+				numberTextBox.Clear();
+				solved = false;
+			}
 			e.Handled = Validate(e.Text);
+			pressedEnter = false;
 		}
 
 		private bool Validate(string text)
 		{
-			Regex regex = new Regex(@"(?:[0-9])|(?:[\(\)\.\+\-\*\/\√])");
+			Regex regex = new Regex(@"(?:[0-9])|(?:[\(\)\.\+\-\*\/\√\'ln'\^\!])");
 			return regex.IsMatch(text) ? false : true;
 		}
 		private void numberSign_Click(object sender, RoutedEventArgs e)
 		{
-			int caretPosition = numberTextBox.CaretIndex + 1;
-			string insert = (sender as Button).Content.ToString();
-			if (!Validate(numberTextBox.Text+insert))
+			if (solved && !pressedEnter)
+			{
+				numberTextBox.Clear();
+				solved = false;
+			}
+			Insert((sender as Button).Content.ToString());
+		}
+
+		private void Insert(string insert)
+		{
+			int caretPosition = numberTextBox.CaretIndex + insert.Length;
+			if (!Validate(numberTextBox.Text + insert))
 				numberTextBox.Text = numberTextBox.Text.Insert(numberTextBox.CaretIndex, insert);
 			FocusManager.SetFocusedElement(this, numberTextBox);
 			numberTextBox.CaretIndex = caretPosition;
@@ -94,7 +111,7 @@ namespace Calculator
 
 		private void deleteAllButton_Click(object sender, RoutedEventArgs e)
 		{
-			numberTextBox.Text = "";
+			numberTextBox.Clear();
 			FocusManager.SetFocusedElement(this, numberTextBox);
 		}
 
@@ -119,7 +136,9 @@ namespace Calculator
 		{
 			string problem = numberTextBox.Text;
 			double result = Parser.Solve(problem);
-			numberTextBox.Text = double.IsNaN(result) ? "ERROR" : result.ToString();
+			numberTextBox.Text = double.IsNaN(result) ? "error" : result.ToString();
+			solved = true;
+			FocusManager.SetFocusedElement(this, numberTextBox);
 		}
 
 		private void numberTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -128,6 +147,7 @@ namespace Calculator
 			{
                 case Key.Enter:
 					Solve();
+					pressedEnter = true;
                     break;
 				case Key.I:
 					Settings settings = new Settings();
@@ -148,18 +168,18 @@ namespace Calculator
 
 		private void negationButton_Click(object sender, RoutedEventArgs e)
 		{
-			if(numberTextBox.Text.StartsWith("-(") && numberTextBox.Text.EndsWith(")"))
+			string s = numberTextBox.Text;
+			if (numberTextBox.Text.StartsWith("-(") && numberTextBox.Text.EndsWith(")"))
 			{
-
+				s = s.Substring(0, s.Length - 1);
+				s = s.Remove(0,2);
 			} else
 			{
-
+				s = "-(" + s + ")";
 			}
-		}
-
-		private void sqrtButton_Click(object sender, RoutedEventArgs e)
-		{
-
+			numberTextBox.Text = s;
+			FocusManager.SetFocusedElement(this, numberTextBox);
+			numberTextBox.CaretIndex = s.Length;
 		}
 	}
 }

@@ -10,7 +10,7 @@
 		AllowsTransparency="True"
 		ResizeMode="CanResizeWithGrip"
 		WindowStartupLocation="CenterScreen"
-        Title="Settings" Height="500" MinHeight="500" MaxHeight="800" Width="800" MinWidth="800" MaxWidth="1200" Background="#CC000000">
+        Title="Settings" Height="500" MaxHeight="700" Width="800" MinWidth="800" MaxWidth="1000" Background="#CC000000">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
@@ -37,8 +37,8 @@
 		<Button x:Name="factorialButton" Content="!" Grid.Row="2" Grid.Column="3" Margin="25,10" Click="functionButton_Click" Style="{StaticResource BetterButton}"/>
 		<Button x:Name="negationButton" Content="+/-" Grid.Row="2" Grid.Column="4" Margin="25,10" Click="functionButton_Click" Style="{StaticResource BetterButton}"/>
 
-		<Label Name="titleLabel" Content="Natural logarithm" FontFamily="Comic Sans MS" FontSize="25" FontWeight="Bold" Foreground="White" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
-		<Label Name="descriptionLabel" Content="Natural logarithm of a number x:" FontFamily="Comic Sans MS" FontSize="15" FontWeight="Bold" Foreground="White" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+		<Label Name="titleLabel" FontFamily="Comic Sans MS" FontSize="25" FontWeight="Bold" Foreground="White" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+		<Label Name="descriptionLabel" FontFamily="Comic Sans MS" FontSize="15" FontWeight="Bold" Foreground="White" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
 		<Label Name="caseOneLabel" FontFamily="Comic Sans MS" FontSize="30" FontWeight="Bold" Foreground="White" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		<Label Name="caseTwoLabel" FontFamily="Comic Sans MS" FontSize="30" FontWeight="Bold" Foreground="White" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		<Label Name="caseThreeLabel" FontFamily="Comic Sans MS" FontSize="30" FontWeight="Bold" Foreground="White" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -62,7 +62,7 @@
 		<EventTrigger RoutedEvent="Loaded">
 			<BeginStoryboard>
 				<Storyboard>
-					<DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="500" Duration="00:00:01"/>
+					<DoubleAnimation Storyboard.TargetProperty="Height" From="0" To="500" Duration="00:00:01" Completed="DoubleAnimation_Completed"/>
 				</Storyboard>
 			</BeginStoryboard>
 		</EventTrigger>

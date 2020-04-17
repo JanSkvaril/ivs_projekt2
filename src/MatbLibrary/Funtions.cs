@@ -128,7 +128,7 @@ namespace MatbLibrary
                 throw new ArgumentException("Error: invalid argument");
 
             Random rand = new Random();
-            double xPrev = rand.Next(10);
+            double xPrev = rand.Next(9) + 1;
             double diff = int.MaxValue;
             double xNext = 0.0;
             while (diff > 1e-12)
@@ -137,7 +137,7 @@ namespace MatbLibrary
                 diff = Math.Abs(xNext - xPrev);
                 xPrev = xNext;
             }
-
+            
             return xNext;
         }
         /**

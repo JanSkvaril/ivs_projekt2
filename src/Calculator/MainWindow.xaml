@@ -80,7 +80,7 @@
 				<TextBlock Margin="1" FontWeight="Bold">Ce</TextBlock>
 			</Viewbox>
 		</Button>
-		<Button x:Name="settingsButton" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Margin="7,5" FontSize="12" Click="settingsButton_Click" Style="{StaticResource BetterButton}">
+		<Button x:Name="helpButton" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Margin="7,5" FontSize="12" Click="helpButton_Click" Style="{StaticResource BetterButton}">
 			<Viewbox>
 				<TextBlock Margin="1" FontWeight="Bold">Help</TextBlock>
 			</Viewbox>

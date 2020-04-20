@@ -1,4 +1,15 @@
-﻿using System;
+﻿/********************************************************************
+ * Project name: ivs_projekt2
+ * File: Mode.cs
+ * Author: Erik Báča xbacae00@fit.vutbr.cz
+ * ******************************************************************/
+/**
+ * @file Mode.cs
+ * @brief Color mode object
+ * @author Erik Báča xbacae00@fit.vutbr.cz
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +18,14 @@ using System.Windows.Media;
 
 namespace Calculator
 {
+	/**
+	* Class containing object for creating the color mode
+	*/
 	class Mode
 	{
+		/**
+		* @brief static instance of the Mode for light color mode
+		*/
 		public static Mode LightMode = new Mode()
 		{
 			MainColor = "#00CC00",
@@ -20,6 +37,9 @@ namespace Calculator
 			Topbar = Brushes.White,
 		};
 
+		/**
+		* @brief static instance of the Mode for dark color mode
+		*/
 		public static Mode DarkMode = new Mode()
 		{
 			MainColor = "#FFA500",
@@ -31,7 +51,9 @@ namespace Calculator
 			Topbar = Brushes.Black,
 		};
 
-
+		/**
+		* @brief properties needed for setting the color mode
+		*/
 		public string MainColor { get; set; }
 		public string MinorColor { get; set; }
 		public string Background { get; set; }

@@ -1,4 +1,16 @@
-﻿using System;
+﻿/********************************************************************
+ * Project name: ivs_projekt2
+ * File: Parser.cs
+ * Author: Jan Skvaril xskvar09@fit.vutbr.cz
+ * ******************************************************************/
+/**
+ * @file Parser.cs
+ * @brief Contains Parser Class
+ * @author Jan Skvaril xskvar09@fit.vutbr.cz
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -6,20 +18,34 @@ using System.Text.RegularExpressions;
 
 namespace MatbLibrary
 {
+    /**
+	* Class handling parsing string and calculating the result using Math functions
+	*/
     public static class Parser
     {
-        /// <summary>
-        /// Class for handling binary operations like plus, multiply, etc.
-        /// </summary>
+        /**
+        * Class for handling binary operations like plus, multiply, etc.
+        */
         class Operation
         {
+            //TODO: operations should have priority number, that would simbolize 
+
+            /**
+            * @brief Constructor for binary operator
+            * @param _regex that matches given operator, should containt x in group 1 and y in group 2
+            * @param _func function from Math library that will be called for given operator
+            */
             public Operation(string _regex, Func<double, double, double> _func)
             {
                 regex = new Regex(_regex);
                 binFunc = _func;
                 type = Operation_type.Binary;
             }
-
+            /**
+            * @brief Constructor for binary operator
+            * @param _regex that matches given operator, should containt x in group 1
+            * @param _func function from Math library that will be called for given operator
+            */
             public Operation(string _regex, Func<double, double> _func)
             {
                 regex = new Regex(_regex);
@@ -34,7 +60,7 @@ namespace MatbLibrary
             //function for the operation from math library
             //binary function (two parameters)
             public Func<double, double, double> binFunc;
-            //unary function (one parametr
+            //unary function (one parametr)
             public Func<double, double> unFunc;
         }
         //All operations supported
@@ -49,12 +75,13 @@ namespace MatbLibrary
             Fac,
             NLog,
         }
+        //All types of operators
         enum Operation_type
         {
-            Binary,
-            Unary
+            Binary, //takes two parameters
+            Unary, // takes only one paramer
         }
-        //Dictionary of all binary operations and therir matching object
+        //Dictionary of all binary operations and their matching object
         static Dictionary<Operations, Operation> operation_list;
         static Parser()
         {
@@ -62,16 +89,16 @@ namespace MatbLibrary
             string digit_regex = @"((?:\-|\+)?\d+(?:(?:\.|\,)?\d*)?)";
 
             operation_list = new Dictionary<Operations, Operation>();
-            //unary
+            //unary operations
             operation_list[Operations.Fac] =
                 new Operation(digit_regex + @"\!", Functions.Fact);
             operation_list[Operations.NLog] =
                 new Operation(@"ln" + digit_regex, Functions.NatLog);
 
             //binary operations
-            operation_list[Operations.Plus] = 
+            operation_list[Operations.Plus] =
                 new Operation(digit_regex + @"\+" + digit_regex, Functions.Add);
-            operation_list[Operations.Minus] = 
+            operation_list[Operations.Minus] =
                 new Operation(digit_regex + @"\-" + digit_regex, Functions.Sub);
             operation_list[Operations.Mul] =
                 new Operation(digit_regex + @"\*" + digit_regex, Functions.Mul);
@@ -83,17 +110,14 @@ namespace MatbLibrary
                 new Operation(digit_regex + @"\√" + digit_regex, Functions.Root);
         }
 
-      
-
-
-        /// <summary>
-        /// Parses input string to separete calculations and solves them using the Math library
-        /// </summary>
-        /// <param name="input">Validated string to calculate</param>
-        /// <returns>Returns result of the given calculation or NaN if it fails</returns>
+        /**
+         * @brief Parses input string to separete calculations and solves them using the Math library
+         * @param input Validated string to calculate, viz docs
+         * @return Returns result of the given calculation or NaN if it fails
+         */
         public static double Solve(string input)
         {
-            input = ReplaceSigns(input);
+            input = CorrectFormat(input);
             try
             {
                 input = SolveBrackets(input);
@@ -105,32 +129,26 @@ namespace MatbLibrary
                 input = SolveOperation(input, Operations.Div);
                 input = SolveOperation(input, Operations.Plus);
                 input = SolveOperation(input, Operations.Minus);
-            }                
+            }
             catch (Exception)
             {
                 return double.NaN;
             }
 
-    input = ReplaceSigns(input);
-
+            input = CorrectFormat(input);
+            input = input.Replace(',', '.'); //for correct parsing
             double result;
-            if (!double.TryParse(input, out result))
+            if (!double.TryParse(input, NumberStyles.Float, CultureInfo.InvariantCulture, out result))
                 return double.NaN;
             else return result;
         }
-        /// <summary>
-        /// Validates if input string is in corrent format
-        /// </summary>
-        /// <param name="input">String to validate</param>
-        /// <returns>Retruns true if string is valide, false if not</returns>
+        /**
+         * @brief Validates if input string is in corrent format
+         * @param input String to validate
+         * @return Retruns true if string is valide, false if not
+         */
         public static bool Validate(string input)
         {
-            /*
-            Regex signs = new Regex(@"(\+|\-)(\+|\-)");
-            var matches = signs.Match(input);
-            if (matches.Success) return false;
-            */
-            //takhle to pak nebude :)
             double result;
             try
             {
@@ -144,11 +162,17 @@ namespace MatbLibrary
             if (double.IsNaN(result))
                 return false;
             else return true;
-           
+
         }
 
-        static string ReplaceSigns (string input)
+        /**
+         * @brief Will handle multiple signs next to each other, e.g. -- will be replaced with +
+         * @param input string to be correcterd
+         * @return string with only singular signs
+         */
+        static string CorrectFormat(string input)
         {
+
             string replacement = input;
             do
             {
@@ -160,13 +184,12 @@ namespace MatbLibrary
             } while (replacement != input);
             return replacement;
         }
-
-        /// <summary>
-        /// Finds all apearences of specified operation and replaces then with result
-        /// </summary>
-        /// <param name="input">Input string</param>
-        /// <param name="oper">Operation to be replaced</param>
-        /// <returns>string with operation replaced with results</returns>
+        /**
+         * @brief Finds all apearences of specified operation and replaces then with result
+         * @param input Input string
+         * @param oper Operation to be replaced
+         * @return string with operation replaced with results
+         */
         static string SolveOperation(string input, Operations oper)
         {
 
@@ -176,7 +199,7 @@ namespace MatbLibrary
                 matches = operation_list[oper].regex.Matches(input);
                 foreach (Match match in matches)
                 {
-                    double result=double.NaN;
+                    double result = double.NaN;
                     if (operation_list[oper].type == Operation_type.Unary)
                     {
                         //regex pattern is written so x  group 1
@@ -194,22 +217,26 @@ namespace MatbLibrary
                     }
                     string replacement = result.ToString();
                     //this is to fix issue with calculations like 
-                    //3-5*-2, which would result doubleo 300, instead of correct 3+10
+                    //3-5*-2, which would result into 300, instead of correct 3+10
                     if (result >= 0) replacement = "+" + replacement;
 
+                    //replaces regex match with result of that operation
                     input = input.Replace(match.Value, replacement);
                 }
-                input = ReplaceSigns(input);
+                input = CorrectFormat(input);
             } while (matches.Count != 0);
             return input;
         }
-        /// <summary>
-        /// Solves all brackets using Solve() method and replaces them with result 
-        /// </summary>
-        /// <param name="input">Input string</param>
-        /// <returns>string with all brackets replaced with Solve() output</returns>
+        /**
+         * @brief Solves all brackets using Solve() method and replaces them with result
+         * @param Input string
+         * @return string with all brackets replaced with Solve() output
+         */
         static string SolveBrackets(string input)
         {
+            //regex for matching brackets: (number|operation) 
+            //it will match deeper brackets first, e.g. ((5+2)+6) would first match (5+2)
+            //content of the bracket will be in group 1
             Regex regex = new Regex(@"\(((?:[0-9]|\+|ln|\!|\-|\√|\^|\*|\/|\.|\,)*)\)");
             MatchCollection matches;
             do
@@ -217,10 +244,12 @@ namespace MatbLibrary
                 matches = regex.Matches(input);
                 foreach (Match match in matches)
                 {
+                    //this will solve content of the bracket
                     double result = Solve(match.Groups[1].Value);
+                    //replaces bracket with result
                     input = input.Replace(match.Value, result.ToString());
                 }
-                input = ReplaceSigns(input);
+                input = CorrectFormat(input);
             } while (matches.Count != 0);
             return input;
         }

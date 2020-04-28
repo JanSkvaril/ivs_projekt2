@@ -1,4 +1,6 @@
+# Calculator
 #### tým:
+
     \_(*_*)_/\_(*_*)_/\_(*_*)_/\_(*_*)_/
 #### členové:
 * xbacae00
@@ -6,35 +8,20 @@
 * xzavad18
 * xnovot2a 
 
-### git setup easy návod
-buď odsato: https://git-scm.com/ nebo takhle na linuxu:
-
-    sudo apt-get install git
-v nějakým shellu (klidně cmd, nebo powershell na win): 
-
-    git config --global user.nane "Nejaky jmeno"
-    git config --global user.email "nejakej@email.ee"
-
-Pak naklonovat do momentáního adresáře:
-
-    git clone https://github.com/JanSkvaril/ivs_projekt2.git
-
-A frčíš
-
-### Co se musí dělat
+## Co se musí dělat
 Erik:
-- [ ] GUI a nápověda
+- [x] GUI a nápověda
 - [ ] Mockup GUI
 
 Honza:
-- [ ] Parser
-- [ ] Testy pro parser
-- [ ] Uživatelská a programová dokumentace
+- [x] Parser
+- [x] Testy pro parser
+- [x] Uživatelská a programová dokumentace
 
 Michal:
-- [ ] Matematická knihovna
-- [ ] Testy pro knihovnu
-- [ ] Makefile 
+- [x] Matematická knihovna
+- [x] Testy pro knihovnu
+- [x] Makefile 
 
 Kuba:
 - [ ] Profiling
@@ -42,31 +29,49 @@ Kuba:
 
 Nerozděleno:
 - [x] Verzování (git)
-- [ ] **Nasdílet repozitář někomu z ivs**
+- [x] **Nasdílet repozitář někomu z ivs**
 - [ ] Screen jak debugujem
 
-### Funkce co se budou podporovat:
-* +-
-* */
-* x! - faktorial
-* x√y - odmocnina
-* x^y - mocnina
-* lnx - přirozenej logaritmus
+## Instalace
+poprosím doplnit mistra kubíka
 
-* závorky, priority operaci
+## Seznam podporovaných funkcí:
+* plus
+* mínus
+* krát
+* děleno
+* factoriál
+* odmocnina
+* mocnina
+* přirozený logaritmus
+* závorky
 
-### String format pro parser
-    x+y
-    x-y
-    x*y
-    x/y
-    x^y
-    x√y
-    x!
-    lnx
+Aplikace také podporuje prioritu operátorů a závorek
 
-* x a y může být číslo s plus nebo s mínus před ním, nebo závorky s čímkoliv vevnitř
-* do závorek lze dávat další závorky
+## String format pro Parser
+Ve třídě Parser v metodách Solve() a Validate() se bere jako parametr string s příkladem, který má třída ověřit / spočítat. Tento string by měl mít následující podobu:
+* nesmí obsahovat žádné mezery
+* nesmí obsahovat jiné znaky než čísla a znaky operací uvedé níže
+* čísla mohou obsahovat i desetinou tečku (preferováno), i čárku
+* známénko by mělo být jen jedno, pokud jich bude více bodou nahrazeny za jejich jednoznaménkový ekvivalent (-- se převede na +)
+* všechny operace automaticky berou znaménko co je před číslem (-3^2 je -3 na druhou), jinak je nutno použít závorky
+
+Pokud nastane problém, Solve() vrátí NaN, Validate() vrátí false
+#### Formát operací
+
+    Operace Příklad Výsledek
+    x       -2.3    -2.3
+    x+y     5+-2.1  2.9
+    x-y     5-3     2
+    x*y     -3*2    -6
+    x/y     -2/-2   1
+    x^y     -3^2    9
+    x√y     9√3     3      
+    x!      3!      6
+    lnx     ln1     0
+
+*Poznámka: do závorek lze dávat další závorky*
+
 
 
 

@@ -1,4 +1,16 @@
-﻿using System;
+﻿/********************************************************************
+ * Project name: ivs_projekt2
+ * File: Parser.cs
+ * Author: Jan Skvaril xskvar09@fit.vutbr.cz
+ * ******************************************************************/
+/**
+ * @file Parser.cs
+ * @brief Contains Parser Class
+ * @author Jan Skvaril xskvar09@fit.vutbr.cz
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -6,7 +18,9 @@ using System.Text.RegularExpressions;
 
 namespace MatbLibrary
 {
-
+    /**
+	* Class handling parsing string and calculating the result using Math functions
+	*/
     public static class Parser
     {
         /**

@@ -7,7 +7,7 @@ namespace Calculator.UnitTests
     [TestClass]
     public class ParserTests
     {
-
+        //Tests Parser.Validate with strings that should be valid
         [TestMethod]
         public void Validation_RightInput()
         {
@@ -22,7 +22,7 @@ namespace Calculator.UnitTests
              
          
         }
-
+        //Tests Parser.Validate with strings that should not be valid
         [TestMethod]
         public void Validation_WrongInput()
         {
@@ -35,19 +35,20 @@ namespace Calculator.UnitTests
             Assert.IsFalse(Parser.Validate("^5"));
             Assert.IsFalse(Parser.Validate("5-^5"));
             Assert.IsFalse(Parser.Validate("(-5+3)*-2!"));
-            //Assert.IsFalse(Parser.Validate("---5"));
             Assert.IsFalse(Parser.Validate("5.2!"));
         }
 
+        //Tests for simple operations
         [TestMethod]
         public void SolveOperations()
         {
-            
+            Assert.AreEqual(Parser.Solve("5.2"), 5.2);
+
             Assert.AreEqual(Parser.Solve("5!"), 120);
             Assert.AreEqual(Parser.Solve("5+3"), 8);
             Assert.AreEqual(Parser.Solve("5-3"), 2);
             Assert.AreEqual(Parser.Solve("-5-3"), -8);
-            Assert.AreEqual(Parser.Solve("--5+3"), 8);
+            //Assert.AreEqual(Parser.Solve("--5+3"), 8); - this will work, but it is not recomended to use
             
 
             Assert.AreEqual(Parser.Solve("5*3"), 15);
@@ -67,7 +68,7 @@ namespace Calculator.UnitTests
 
         }
 
-
+        //Tests for operation priorities
         [TestMethod]
         public void SolveOperationOrder()
         {
@@ -83,6 +84,7 @@ namespace Calculator.UnitTests
 
         }
 
+        //Tests for solving brackets
         [TestMethod]
         public void SolveBrackets()
         {

@@ -18,7 +18,9 @@ namespace StandardDeviation
 
         public static double[] numbers = NumberRead();
 
-
+        /// <summary>
+        /// Parse/ read numbers from stdin.
+        /// </summary> 
         public static double[] NumberRead()
         {
 
@@ -69,7 +71,11 @@ namespace StandardDeviation
 
         }
 
-
+        /// <summary>
+        /// Standard Deviation calculation.
+        /// </summary>
+        /// <param name="var">values for calculation</param>
+        /// <returns>Standard Deviation</returns>
         public static double StandardDeviation(double[] vari)
         {
             // variables, numbers - count
@@ -101,7 +107,7 @@ namespace StandardDeviation
                 }
                 var = variable;
                 var = Functions.Div(var, (arrayCount - 1));
-                summary = Math.Sqrt(var);
+                summary = Functions.Root(2, var);
 
             }
             catch (Exception e)
@@ -114,7 +120,9 @@ namespace StandardDeviation
         }
 
 
-
+        /// <summary>
+        /// Write result - stdout
+        /// </summary> 
         static void Main(string[] args)
         {
             Console.WriteLine("Result: " + StandardDeviation(numbers));

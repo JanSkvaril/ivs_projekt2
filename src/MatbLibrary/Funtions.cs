@@ -165,6 +165,7 @@ namespace MatbLibrary
             }
             return (2 * sum);
         }
+
     }
 }
 /*** End of file Functions.cs ***/

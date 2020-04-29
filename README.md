@@ -8,6 +8,12 @@
 * xzavad18
 * xnovot2a 
 
+#### Prostredi
+* Windows 64bit
+
+#### Licence
+* Program je poskytován pod licencí GNU GPL v.3
+
 ## Co se musí dělat
 Erik:
 - [x] GUI a nápověda
@@ -102,7 +108,6 @@ Pokud nastane problém, Solve() vrátí NaN, Validate() vrátí false
     lnx     ln1     0
 
 *Poznámka: do závorek lze dávat další závorky*
-
 
 
 

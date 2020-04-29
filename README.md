@@ -25,12 +25,12 @@ Michal:
 
 Kuba:
 - [ ] Profiling
-- [ ] Instalačka
+- [x] Instalačka
 
 Nerozděleno:
 - [x] Verzování (git)
 - [x] **Nasdílet repozitář někomu z ivs**
-- [ ] Screen jak debugujem
+- [x] Screen jak debugujem
 
 ## Instalace
 * Otevři příslušný Setup.msi

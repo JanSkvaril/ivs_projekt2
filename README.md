@@ -24,7 +24,7 @@ Michal:
 - [x] Makefile 
 
 Kuba:
-- [ ] Profiling
+- [x] Profiling
 - [x] Instalačka
 
 Nerozděleno:

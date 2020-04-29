@@ -1,10 +1,10 @@
 .PHONY: all pack clean run profile help
 all: run
 pack: clean
-	mkdir ..\..\repo
-	xcopy /E /H ..\..\ivs_projekt2 ..\..\repo
-	powershell Compress-Archive -Force ../../repo odevzdat.zip
-	rmdir /Q /S ..\..\repo 
+	mkdir ..\..\xbacae00_xskvar09_xzavad18_xnovot2a\repo
+	xcopy /E /H ..\. ..\..\xbacae00_xskvar09_xzavad18_xnovot2a\repo
+	powershell Compress-Archive -Force ..\..\xbacae00_xskvar09_xzavad18_xnovot2a xbacae00_xskvar09_xzavad18_xnovot2a.zip
+	rmdir /Q /S ..\..\xbacae00_xskvar09_xzavad18_xnovot2a 
 clean:
 	for /d /r .. %%d in (obj) do @if exist "%%d" rd /s/q "%%d"
 	for /d /r .. %%d in (bin) do @if exist "%%d" rd /s/q "%%d"

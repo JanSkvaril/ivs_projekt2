@@ -222,6 +222,7 @@ namespace MatbLibrary
 
                     //replaces regex match with result of that operation
                     input = input.Replace(match.Value, replacement);
+                    input = input.Replace(',', '.'); //for correct parsing
                 }
                 input = CorrectFormat(input);
             } while (matches.Count != 0);

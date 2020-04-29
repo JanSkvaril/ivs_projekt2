@@ -25,15 +25,46 @@ Michal:
 
 Kuba:
 - [ ] Profiling
-- [ ] Instalačka
+- [x] Instalačka
 
 Nerozděleno:
 - [x] Verzování (git)
 - [x] **Nasdílet repozitář někomu z ivs**
-- [ ] Screen jak debugujem
+- [x] Screen jak debugujem
 
 ## Instalace
-poprosím doplnit mistra kubíka
+* Otevři příslušný Setup.msi
+* Klikni na další
+* Vyber umístění složky, kam se daný program/kalkulačka má nainstalovat (výchozí složka: C:\Program Files (x86)\Calculator\Calculator\ . Možnost zvolení, zdali se nainstule pouze pro aktuálního uživatele nebo pro všechny uživatelé na počítači. Lze také zkntrolovat potřebné místo na disku pro daný program a zobrazit dostupné volné. Pro pokračování stiskněte Další
+* Nyní je program může být nainstalován kliknutím na Další.
+* Počkáme až se uspěšne program nainstaluje.
+* Nyní mužeme kliknout na Zavřít a tím instalace je dokončena.
+* Aplikaci mužeme nyní spustit s plochy a to za pomocí ikony Calculator.
+ 
+## Odinstalace
+* Odinstalaci můžeme řešit třemi způsoby
+##### 1) Odisntalací za pomocí instalátoru.
+
+* Spustíme setup.msi
+* Zvolíme Odebrat sadu Calculator. (v případě problému, můžeme zvolit i Opravit sadu Calculator a tím opravit případné požkozené soubory)
+*  Klikneme na Dokončit.
+* Vyčkáme dokud se odinstalace neprovede.
+*  Poté klikneme na Zavřít a tím je odinstalace hotová.
+##### 2) Pomocí odinstalátoru v instalační složce Kalkulačky
+
+* V průzkumníku nebo kdekoliv jinde otevřem umístění kalkulačky ketré je následující: C:\Program Files (x86)\Calculator\Calculator
+* Klikneme na zástupce Uninstall
+* Zobrazí se okno, klikneme na Ano
+* Sečkáme než je odinstalace hotová.
+* Odinstalace skončí jakmile se uzavřou všechny dotatečná okna.
+* Odinstalace byla uspěšná
+##### 3) Pomocí aplikace funkce obdoba Programů v kontrolním panelu.
+
+* Vyhledáme a spustíme Aplikace a funkce
+* nalezneme daný program, v tomoto případě Calculator
+* Klikneme na Odinstalovat nebo na upravit (obdoba bodu 1), vyskočí okénko a povrdíme kliknutím na Odinstalovat
+* Počkáme než se odinstalace dokončí.
+* Po uzavření okne je aplikace uspěšne odinstalováná
 
 ## Seznam podporovaných funkcí:
 * plus

@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MatbLibrary\MatbLibrary.csproj">
+    <ProjectReference Include="..\MatbLibrary\MathLibrary.csproj">
       <Project>{85dfd11c-87d3-408e-8c55-c68effdb051b}</Project>
-      <Name>MatbLibrary</Name>
+      <Name>MathLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
 xbacae00 100 (GUI, nápověda, mockup GUI)
-xskvar09 100 (parser, testy pro parser, uživatelská a programová dokumentace)
+xskvar09 100 (parser, testy pro parser, uživatelská a programová dokumentace, readme)
 xzavad18 100 (matematická knihovna, testy pro knihovnu, makefile)
-xnovot2a 100 (profiling, instalačka)
+xnovot2a 100 (profiling, instalačka, postup instalace a odinstalace)

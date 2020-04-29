@@ -11,10 +11,10 @@ clean:
 	for /d /r .. %%d in (packages) do @if exist "%%d" rd /s/q "%%d"
 	for /d /r .. %%d in (.vs) do @if exist "%%d" rd /s/q "%%d"
 run:
-	src\Calculator\obj\Release\Calculator.exe
+	Calculator\bin\Release\Calculator.exe
 profile:
-	#TODO
+	type Standard.Deviation\data.txt | Standard.Deviation\bin\Release\Standard.Deviation.exe
 help:
-	#TODO
+	type ..\README.md
 
 	
